@@ -1,0 +1,74 @@
+.sidebar {
+  width: 16%;
+  border-right: 0.5px solid rgb(230, 227, 227);
+  min-height: 100vh;
+  background-color: white;
+}
+.top {
+  text-align: center;
+  height: 50px;
+  padding-top: 10px;
+  animation: top 0.7s;
+}
+
+@keyframes top{
+  0%{ transform: translateY(-100px);}
+  100%{ transform: translateX(0);}
+}
+.top .logo {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #101111;
+}
+.center {
+  padding:0 20px;
+}
+.center ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.center .active li{  background-image: linear-gradient(  to right,#383d58 100%,#383d58 100%,#383d58 100%);
+}
+.center .active span {color:white; font-weight: 500;}
+.center .active .icon {color:white; }
+.title-name {
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  color: #383d58;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.center li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  background: white;
+  background-size: 200%;
+  background-image: linear-gradient(  to right,#f8f9fa 0%,#9cb2fa00 50%,#383d58 50%);
+  transition: all 0.3s ease-in-out;
+}
+.center a li:hover span{color: white;}
+.center a li:hover .icon{color: white;}
+
+.center li:hover {
+  color: white;
+  background-position: right center;
+}
+.center li span{
+  color:#373738;
+  margin-left: 15px;
+}
+.icon {
+  font-size: 18px;
+  color: #383d58;
+  margin-left: 15px;
+}
+.avatar img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}

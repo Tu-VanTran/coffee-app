@@ -1,0 +1,194 @@
+.user-profile {
+    width: 100%;
+    display: flex;
+}
+
+.profile-user {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    padding: 20px 5px;
+    height: 100vh;
+    border: 0.5px solid rgb(212, 212, 212);
+
+}
+
+.search-user {
+    width: 20%;
+    height: 92vh;
+    text-align: center;
+}
+.input-search{
+    border: 0.5px solid rgb(212, 212, 212);
+    border-bottom: none;
+    background: rgb(245, 244, 244);
+
+}
+
+.search-user .list-user {
+    width: 100%;
+    overflow-y: scroll;
+    height: 85vh;
+    border-radius: none;
+    box-shadow: none;
+}
+
+.list-user::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+.list-user::-webkit-scrollbar-thumb {
+    background-color: rgb(221, 135, 30);
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+
+
+.input-search input {
+    width: 80%;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: rgb(245, 244, 244);
+}
+
+.item-user {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: start;
+    align-items: center;
+    border-bottom: 0.2px solid rgb(212, 212, 212);
+    color: rgb(78, 78, 78);
+    /* border-radius: 15px; */
+    padding-left: 10%;
+    cursor: pointer;
+    background: white;
+    background-size: 210%;
+    background-image: linear-gradient(to right, white 0%, rgb(255, 255, 255)51%, #383d58 50%);
+    transition: all 0.4s ease-in-out;
+}
+
+.item-user:hover {
+    background-position: right center;
+    color: white;
+}
+
+.item-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 5%;
+}
+
+.name-user {
+    line-height: 5px;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.profile {
+    width: 78%;
+    height: 92vh;
+    margin-left: 2%;
+}
+
+.info {
+    width: 100%;
+    height: 25vh;
+    margin-bottom: 4vh;
+    display: flex;
+    border: 0.5px solid rgb(212, 212, 212);
+    position: relative;
+}
+
+.info img {
+    width: 17%;
+    max-height: 85%;
+    border-radius: 50%;
+    margin: 12px 4%;
+}
+.info .new-value{
+    outline: none;
+    border: none;
+}
+.info1 {
+    width: 33%;
+    height: 150px;
+    margin-top: 15px;
+}
+
+.info1 .fb {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 20px 10px 0 0;
+}
+
+.info1 .zl {
+    width: 40px;
+    height: 40px;
+    border-radius: 15%;
+    cursor: pointer;
+    margin: 20px 10px 0 0;
+}
+
+.info1 .in {
+    width: 40px;
+    height: 40px;
+    border-radius: 15%;
+    cursor: pointer;
+    margin: 20px 10px 0 0;
+}
+
+.info1 span {
+    float: right;
+    padding-right: 30px;
+    cursor: pointer;
+}
+.delete-profile {
+    position: absolute;
+    right: 5px;
+    bottom: 15px;
+    padding: 3px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 0.5px solid rgb(148, 148, 148);
+}
+.delete-profile:hover{
+    background-color: #383d58;
+    color: white;
+}
+.history {
+    width: 100%;
+    height: 64vh;
+    overflow-y: scroll;
+    border: 0.5px solid rgb(212, 212, 212);
+
+}
+
+.history::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 0px;
+    box-shadow: none;
+    
+}
+
+.history::-webkit-scrollbar-thumb {
+    background-color: rgb(221, 135, 30);
+    border-radius: 3px;
+    box-shadow: none;
+}
+.ant-table .ant-table-thead{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}

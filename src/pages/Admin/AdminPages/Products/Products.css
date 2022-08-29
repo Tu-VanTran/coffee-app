@@ -1,0 +1,266 @@
+.products{
+    width: 100%;
+    display: flex;
+}
+.product{
+    width: 80%;
+    border: 0.5px solid rgb(230, 227, 227);
+    margin: 0 auto;
+}
+
+.tille-product{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    height: 59px;
+    border-bottom: 0.5px solid rgb(230, 227, 227);
+    align-items: center;
+    background: white;
+    animation: top 0.8s;
+    transition: all 0.5s;
+}
+.tille-product :hover .name-type{
+    color: blue;
+}
+@keyframes top{
+    0%{ transform: translateY(-100px);}
+    100%{ transform: translateX(0);}
+  }
+.tille-product button{
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.tille-product h3{
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+}
+.tille-product h3:hover{
+    border-bottom:1px solid black ;
+    color: blue;
+}
+.list-product{
+    width: 100%;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+.product-item {
+    float: left;
+    padding:  3px;
+    width: 14.7%;
+    height: 260px;
+    display: block;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px; 
+    background-color: white;
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+}
+
+.product-item:hover{
+    cursor: pointer;
+    background-color: #636670;
+    color: white;
+    transition: background-color 1.2s;
+    
+}
+.product-item img{
+    width: 100%;
+    height: 55%;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+.product-item :hover img{
+    transform: scale(1.1);
+}
+.product__listing{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+    cursor: pointer;
+}
+.product__listing img{
+	width: 70px;
+}
+.product__listing:hover{
+    background-color: #f3f3f3;
+}
+.add-product-item{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 2;
+}
+.add-products{
+    width: 35%;
+    position: fixed;
+    top: 10px;
+    left: 35%;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.add-products h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.close-add{
+    position: absolute;
+    top: 5px;
+    right:15px;
+}
+
+.close-add:hover{
+    cursor: pointer;
+    color: red;
+}
+
+.label-input{
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+}
+.label-input label{
+    float: left;
+    width: 35%;
+    height: 30px;
+
+}
+.input-product{
+    outline: none;
+    border: 1px solid rgb(228, 227, 225);
+    width: 60%;
+    height:30px;
+    
+}
+
+.image{
+    width: 60%;
+    float: left;
+}
+.save-add{
+    padding: 5px 20px;
+    font-size: 18px ;
+    font-weight: 400;
+    background-color: #383d58;
+    border: none;
+    border-radius: 7px;
+    margin-left: 40%;
+    color: white;
+}
+
+.save-add:hover{
+    cursor: pointer;
+}
+
+.text-des{
+    width: 60%;
+    border: 0.5px solid rgb(197, 197, 197);
+    overflow-y: none;
+    outline: none;
+    border-collapse: hidden;
+}
+.show-item{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    background-color: rgba(0,0,0,.6);
+}
+.detail-item{
+    color: black;
+    margin: 20px auto;
+    width: 30%;
+    padding: 20px;
+    position: fixed;
+    top: 50px;
+    left: 35%;
+    border-radius: 15px;
+    background-color:  white;
+}
+.detail-item img{
+    border-radius: 10px;
+
+    width: 50%;
+    float: left;
+    margin-right: 20px;
+}
+
+.detail-infor{
+    text-align: center;
+}
+
+.detail-infor button{
+    padding: 3px 15px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border: 0.5px solid rgb(230, 227, 227);
+    font-weight: 100;
+    border-radius: 5px;
+}
+.detail-infor .button1{
+    background:#383d58;
+    color: white;
+    padding: 3px 26px;
+}
+/* .button2{
+    background-color:rgb(236, 201, 45);
+} */
+.detail-infor .button1:hover{
+    background: #383d58;
+    cursor: pointer;
+}
+.detail-infor .button2:hover{
+    cursor: pointer;
+    border: 0.5px solid #383d58;
+    color: #383d58;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.detail-infor h3 {
+    padding-left: 10px;
+    margin:  40px 0;
+    font-size: 20px;
+}
+
+.detail-infor .back {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: -15px;
+    margin-right: -5px;
+    color: red;
+}
+
+.back{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+.back:hover{cursor: pointer;}
+
+.des-detail{
+    width: 80%;
+    padding-top: 20px;
+    margin: 20px auto;
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.tille-product .ant-drawer.ant-drawer-open .ant-drawer-mask{
+    opacity: 0;
+}
