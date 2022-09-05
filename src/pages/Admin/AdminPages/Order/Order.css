@@ -6,10 +6,9 @@
 
 .list-order{
     margin: 0 auto;
-    width: 96%;
-    border: 0.5px solid rgb(230, 227, 227);
-    margin: 0 2%;
-
+    width: 83%;
+    margin: 0 0 0 2%;
+    border: 0.5px solid rgb(207, 207, 207);
 }
 
 .list-order h2{
@@ -18,7 +17,7 @@
     font-weight: 400;
     border-bottom: 1px solid rgb(207, 207, 207);
     padding-top: 5px;
-    background: white;
+    background: #fafafa;
 }
 .order-table{
     width: 100%;

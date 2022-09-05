@@ -32,7 +32,7 @@ export const Delivery = () => {
     }, [dispatch,lengthStatus,selectedRowKeys]);
 
     const handleDeliveredOrder = (item) => {
-        dispatch(ConfirmOrderAction({ id: item, status: 'Đang giao' }));
+        dispatch(ConfirmOrderAction({ id: item, status: 'Đã nhận' }));
         notification.success({message:'Xác nhận thành công'})
     }
     const handleCancelOrder = (item) => {
@@ -130,13 +130,7 @@ export const Delivery = () => {
             render: total => `${total} .000đ`
 
         },
-        {
-            title: 'TotalBill',
-            key: 'totalBill',
-            dataIndex: 'totalBill',
-            render: total => `${total} .000đ`
-
-        },
+        
         {
             title: 'Action',
             key: 'id',

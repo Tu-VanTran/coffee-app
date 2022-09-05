@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import './Products.css'
 import { LoadingOutlined } from "@ant-design/icons";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductAction, deleteProductAction, fetchProductActionAdmin, searchProductActionAdmin } from "../../../../stores/slices/admin.product.slice";
 import { notification, Button, Drawer } from "antd";
 import { v4 } from "uuid";
 import { BsSearch } from "react-icons/bs";
+import { RiArrowDropUpLine } from "react-icons/ri";
 import NavAdmin from "../../../../components/layouts/NabarAdmin-Layout/components/NabarAdmin";
 import useWindowSize from "./useWindownSize";
 
@@ -34,19 +36,21 @@ function Products() {
     const loading = listProduct.loading;
 
     const [scrollPosition, setScrollPosition] = useState(0);
-    console.log("🚀 ~ file: Products.jsx ~ line 37 ~ Products ~ scrollPosition", scrollPosition)
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        setScrollPosition(position);
     };
-  }, []);
+
+    useEffect(() => {
+        dispatch(fetchProductActionAdmin());
+    }, [dispatch, total])
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
     const showDrawer = () => {
         setVisible(true);
     };
@@ -54,9 +58,6 @@ function Products() {
     const onClose = () => {
         setVisible(false);
     };
-    useEffect(() => {
-        dispatch(fetchProductActionAdmin());
-    }, [dispatch, total])
 
     const navigate = useNavigate()
     const gotoDetail = (item) => {
@@ -64,7 +65,7 @@ function Products() {
         setDetailItem({})
 
     }
-// handle product detail
+    // handle product detail
     const handleDetailItem = (product) => {
         setDetailItem(product);
         setShowDetail(true);
@@ -82,7 +83,7 @@ function Products() {
 
     }
 
-// handle add product
+    // handle add product
     // handle change value 
     const handleOnchange = (e) => {
         const value = e.target.value;
@@ -157,17 +158,24 @@ function Products() {
     // const toggleDetail = () => setDetailProduct(!detailProduct);
     const toggle = () => setAddProduct(!addProduct);
 
-
+    const onTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+    }
     return (
 
         <div className="products">
             <NavAdmin />
             <div className="product">
                 <div className="tille-product">
+                    {/* <FontAwesomeIcon icon="fa-brands fa-twitter" /> */}
+                    {/* <FontAwesomeIcon icon="fa-solid fa-check-square" /> */}
                     <h3 onClick={toggle}><span >Add Products</span></h3>
                     {tabs.map(item => (
                         <button className="name-type" key={item} style={type === item ?
-                            { borderBottom: "1px solid rgb(80, 79, 79)", color:'blue' }
+                            { borderBottom: "1px solid rgb(80, 79, 79)", color: 'blue' }
                             : {}} onClick={() => setType(item)} >{item.charAt(0).toUpperCase() + item.slice(1)}</button>
                     ))}
                     <>
@@ -189,7 +197,7 @@ function Products() {
                                 onChange={handleSearchChange}
                                 placeholder="Nhập tên sản phẩm"
                                 className="search__input"
-                            
+
                             />
                             {searchValue && (listProduct?.search ?? []).map?.((item, index) => {
                                 return (
@@ -207,7 +215,7 @@ function Products() {
                         </Drawer>
                     </>
                 </div>
-                {addProduct && <div className="add-product-item">           
+                {addProduct && <div className="add-product-item">
                     <div className="add-products" >
                         <h2> Add Products <span className="close-add" onClick={toggle}>X</span></h2>
                         <p className="label-input">
@@ -228,38 +236,38 @@ function Products() {
                         <p className="label-input">
                             <label>Description:</label>
                             <textarea className="text-des" type="text" name="description" value={newTodoValue.description}
-                                onChange={handleOnchange} placeholder="Description"cols ={50} rows={3}  />
+                                onChange={handleOnchange} placeholder="Description" cols={50} rows={3} />
                         </p>
                         <p className="label-input">
                             <label className="select-img" for="input-img">Select File:</label>
                             <input id="input-img" hidden type="file" name="myImage"
                                 onChange={handleOnchangeFile} placeholder="" />
-                            {selectImg && <img  className="image" src={selectImg} />}
+                            {selectImg && <img className="image" src={selectImg} />}
                         </p>
                         <button className="save-add" onClick={hanldeSubmitTodoValue}> ADD</button>
                     </div>
                 </div>
                 }
                 <div className="list-product">
-                {loading && <div style={{ textAlign: 'center' }}><LoadingOutlined /></div>}
+                    {loading && <div style={{ textAlign: 'center' }}><LoadingOutlined /></div>}
                     {listProduct.data.map((item, index) => {
                         if (type === 'all' || item.type === type) return (
-                            
-                                <div className="product-item" key={index} onClick={() => handleDetailItem(item)}>
-                                    <img src={item.image} alt={item.productName} /><br />
-                                    <p style={{ marginTop: '20px' }}>{item.productName}</p>
-                                    <p>{item.price}000đ</p>
 
-                                </div>
+                            <div className="product-item" key={index} onClick={() => handleDetailItem(item)}>
+                                <img className="pro-img" src={item.image} alt={item.productName} /><br />
+                                <p style={{ marginTop: '20px' }}>{item.productName}</p>
+                                <p>{item.price}000đ</p>
 
-                            
+                            </div>
+
+
 
                         )
                     })}
                 </div>
                 {showDetail && <div className="show-item">
-                    <div className="detail-item">
-                        <div style = {{display:'block'}}>
+                    <div className={`  ${showDetail === true? 'detail-item':'hidden-item'}`} >
+                        <div style={{ display: 'block' }}>
                             <img src={detailItem?.image} alt="" />
                         </div>
                         <div className="detail-infor">
@@ -267,11 +275,12 @@ function Products() {
                             <h3 className="name-detail">{detailItem?.productName}</h3>
                             <h3 className="price-detail">{detailItem?.price} 000đ</h3>
                             <p className="des-detail">{detailItem?.description}</p>
-                            <button className="button1" onClick={() => gotoDetail(detailItem)}>Edit</button><br/>
+                            <button className="button1" onClick={() => gotoDetail(detailItem)}>Edit</button><br />
                             <button className="button2" onClick={handleDeleteProduct}>Delete</button><br></br>
                         </div>
                     </div>
                 </div>}
+                {scrollPosition > 200 && <p className="scroll-top" onClick={onTop}><RiArrowDropUpLine className="on-top" /><span></span></p>}
             </div>
 
         </div>

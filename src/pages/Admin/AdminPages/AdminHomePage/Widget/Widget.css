@@ -25,21 +25,25 @@
 
 .left.name-title {
     font-weight: bold;
-    font-size: 14px;
-    color: rgb(190, 18, 18);
+    font-size: 20px;
 }
 
 .counter {
-    font-size: 28px;
+    font-size: 18px;
     font-weight: 300;
 }
 
 .link {
     width: max-content;
     font-size: 12px;
+    text-decoration: none;
     border-bottom: 1px solid gray;
 }
-
+.link:hover{
+    color: darkmagenta;
+    font-style: italic;
+    border-bottom: 1px solid darkmagenta;
+}
 .percentage {
     display: flex;
     align-items: center;

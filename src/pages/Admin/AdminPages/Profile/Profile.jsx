@@ -15,17 +15,17 @@ function Profile() {
     const list_user = useSelector(state => state.user.userInfoState);
     const orderState = useSelector((state) => state.adminCart.cartState);
     const [valueSearch, setValueSearch] = useState()
-    const [itemUser, setItemUser] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isModalVisible2, setIsModalVisible2] = useState(false);
     const location = useLocation()
-    const [userLocation, setUserLocation] = useState(location.state)
     const [newValue, setNewValue] = useState();
-    console.log("🚀 ~ file: Profile.jsx ~ line 24 ~ Profile ~ newValue", newValue)
+    const [title, setTitle] = useState({
+        titleName: '',
+        titleValue: ''
+    });
+    const [profileUser, setProfileUser] = useState(location.state);
     const dispatch = useDispatch();
     const userUpdate_ = list_user.userUpdate
-    const profileUser =itemUser ?? userLocation ??userUpdate_;
-    console.log("🚀 ~ file: Profile.jsx ~ line 27 ~ Profile ~ profileUser", profileUser)
     const data = orderState.data.filter(item => {
         return item.userId === profileUser.id
     })
@@ -33,12 +33,12 @@ function Profile() {
 
     useEffect(() => {
         dispatch(fetchUserAction({ page: 1, limit: 200 }))
-    }, [dispatch,profileUser,])
+    }, [dispatch,userUpdate_])
     useEffect(() => {
         dispatch(fetchOrderAdminAction())
     }, [dispatch]);
     const showUser = (item) => {
-        setItemUser(item)
+        setProfileUser(item)
     }
     
     const onChangeShowUser = (e) => {
@@ -51,14 +51,10 @@ function Profile() {
     const onChangeNewValue = (e) => {
         setNewValue(e.target.value)
     }
-    const [title, setTitle] = useState({
-        titleName: '',
-        titleValue: ''
-    });
+   
 
     const showModal = (name, value) => {
         setIsModalVisible(true);
-        console.log('new', newValue)
 
         setNewValue(null)
         setTitle({
@@ -78,9 +74,8 @@ function Profile() {
         setIsModalVisible(false);
         setIsModalVisible2(false);
         dispatch(updateUserInfoAction({id:profileUser.id,data:{[title.titleName.toLowerCase()]: newValue}}))
-        setItemUser(null)
+        setProfileUser({...profileUser,[title.titleName.toLowerCase()]: newValue})
         setNewValue(null)
-        setUserLocation(null)
     };
 
     const handleCancel = () => {
@@ -101,13 +96,15 @@ function Profile() {
 
         var promise = getBase64(file);
         promise.then(function (result) {
-            setNewValue(result)
+            if(result) {
+                setNewValue(result)
+            }
         });
     };
     const handleDelete = (e) => {
         const index = list_user.dataUser.findIndex(item => item.id === e)
         dispatch(deleteUserAction(e))
-        setItemUser(list_user.dataUser[index-1])
+        setProfileUser(list_user.dataUser[index-1])
     }
     const columns = [
         {
@@ -186,25 +183,7 @@ function Profile() {
     return (
         <div className="user-profile">
             <NavAdmin />
-            <div className="profile-user">
-                <div className="search-user" >
-                    <div className="input-search">
-                        <input placeholder="Search Users" onChange={onChangeShowUser}></input>
-                    </div>
-                    <div className="list-user">
-                        {(valueSearch ? list_user.search : list_user.dataUser).map((item) => {
-                            return (
-                                <div className="item-user" onClick={() => showUser(item)}>
-                                    <img src={item.image} alt="" />
-                                    <div className="name-user">
-                                        <p>{item.name}</p>
-                                        <p>{item.address}</p>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
+            <div className="profile-user">              
                 <div className="profile">
                     <div className="info">
                         <img src={profileUser.image} alt="" className="info1"  onClick={() => showModal2('Image',)}/>
@@ -250,6 +229,25 @@ function Profile() {
                     </div>
                     <div className="history">
                         <Table bordered columns={columns} dataSource={data} pagination={false} />
+                    </div>
+                </div>
+                <div className="search-user" >
+                    <div className="input-search">
+                        <input placeholder="Search Users" onChange={onChangeShowUser}></input>
+                    </div>
+                    <div className="list-user">
+                        {(valueSearch ? list_user.search : list_user.dataUser).map((item) => {
+                            return (
+                                <div className={`item-user ${(item.id === profileUser.id)? 'active':''}`} onClick={() => showUser(item)} 
+                                >
+                                    <img src={item.image} alt="" />
+                                    <div className="name-user">
+                                        <p>{item.name}</p>
+                                        <p>{item.address}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

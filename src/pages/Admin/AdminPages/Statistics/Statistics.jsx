@@ -18,7 +18,6 @@ function Statistics() {
     const [otLarge, setOtLarge] = useState()
     const [totalCf, setTotalCf] = useState()
     const [totalOt, setTotalOt] = useState()
-
     const [showRevenue, setShowRevenue] = useState(false)
     const dispatch = useDispatch();
     const orderState = useSelector((state) => state.adminCart.cartState);
@@ -94,7 +93,6 @@ function Statistics() {
                     }
 
                 })
-                if (index = data.length - 1) return
             }
         })
     }
@@ -277,5 +275,4 @@ function Statistics() {
         </div>
     );
 }
-
 export default Statistics;

@@ -2,7 +2,7 @@
   width: 16%;
   border-right: 0.5px solid rgb(230, 227, 227);
   min-height: 100vh;
-  background-color: white;
+  background-color: #fafafa;
 }
 .top {
   text-align: center;
@@ -45,9 +45,10 @@
   align-items: center;
   padding: 5px;
   cursor: pointer;
-  background: white;
+  background: #fafafa;
   background-size: 200%;
   background-image: linear-gradient(  to right,#f8f9fa 0%,#9cb2fa00 50%,#383d58 50%);
+  -webkit-filter:brightness();
   transition: all 0.3s ease-in-out;
 }
 .center a li:hover span{color: white;}

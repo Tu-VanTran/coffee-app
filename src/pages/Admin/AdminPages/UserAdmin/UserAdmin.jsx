@@ -15,7 +15,6 @@ function UserAdmin() {
     const [searchParam, setSearchParam] = useSearchParams();
     const [deleteItem, setDeleteItem] = useState(false)
     const a = useLocation()
-    console.log("🚀 ~ file: UserAdmin.jsx ~ line 18 ~ UserAdmin ~ a", a)
     const navigate = useNavigate()
     const data = listUser.dataUser;
     const activeUser = data.filter((item) => item.status === 'active');
@@ -26,9 +25,11 @@ function UserAdmin() {
     const page_ = searchParam.get("page") ?? `${defaultPage}`;
     const limit_ = searchParam.get("limit") ?? `${USER_LIMIT}`
     const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(fetchUserAction({ page: page_, limit: limit_ }))
     }, [dispatch, page_, limit_, data.length])
+
     const gotoDetailProfile = (item) => {
         navigate(`/admin/profile/${item.id}`, { state: { ...item } })
     }

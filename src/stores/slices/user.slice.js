@@ -141,10 +141,10 @@ const userSlice = createSlice({
                 message: `Cập nhật thành công!`,
             });
             const userInfoUpdate = action.payload
-            if(userInfoUpdate.id === state.userInfoState.data.id){
+            if(userInfoUpdate.id === userInfoFromStorage.id){
             localStorage.setItem(USER_INFO_KEY, JSON.stringify(userInfoUpdate))
             }
-            const newData = state.userInfoState.dataUser.filter(item => item.id !== userInfoUpdate.id)
+            // const newData = state.userInfoState.dataUser.filter(item => item.id !== userInfoUpdate.id)
             state.userInfoState = {
                 ...state.userInfoState,
                 dataUser: [...state.userInfoState.dataUser],
@@ -189,7 +189,7 @@ const userSlice = createSlice({
             notification.success({
                 message: `Đã xóa thành công`
             })
-            const newDataUser = state.userInfoState.dataUser.filter(item => item.id === action.payload)
+            const newDataUser = state.userInfoState.dataUser.filter(item => item.id !== action.payload)
             state.userInfoState ={
                 ...state.userInfoState,
                 dataUser:newDataUser,

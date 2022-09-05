@@ -3,8 +3,39 @@ import { BsFillCalendarFill } from "react-icons/bs";
 import { MdExpandLess } from "react-icons/md";
 import './Widget.css';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductActionAdmin } from '../../../../../stores/slices/admin.product.slice';
+import { fetchOrderAdminAction } from '../../../../../stores/slices/admin.cart.slice';
+import { fetchUserAction } from '../../../../../stores/slices/user.slice';
 export const Widget = ({ type }) => {
+  const listOrder = useSelector(state => state.adminCart.cartState);
+  const listProduct = useSelector(state => state.adminProduct.productState)
+  const listUser = useSelector(state => state.user.userInfoState)
+  const dispatch = useDispatch();
+
+  const listNewOrder = (listOrder.data.filter(item => item.status === 'Chờ xác nhận')).length;
+  let result = 0;
+  const tatolOrder =() => { listOrder.data.filter(item => {
+    if(item.status === 'Đã nhận') {
+      result += item.totalBill;
+      console.log("🚀 ~ file: Widget.jsx ~ line 18 ~ tatolOrder ~ result", result)
+      return result;
+    }
+  })};
+  tatolOrder()
+  const product = listProduct.data.length;
+  const list_user = listUser.dataUser.length
+
+  useEffect(() => {
+    dispatch(fetchProductActionAdmin());
+}, []);
+useEffect(() => {
+  dispatch(fetchOrderAdminAction())
+}, []);
+useEffect(() => {
+  dispatch(fetchUserAction({ page: 1, limit: 200 }))
+}, [])
     let data;
   
     //temporary
@@ -14,8 +45,9 @@ export const Widget = ({ type }) => {
     switch (type) {
       case "user":
         data = {
-          title: "USERS",
-          link: "See all users",
+          title: (<span style={{color:'blue'}}>Users</span>),
+          amount:list_user,
+          link: (<Link to='/admin/user'>See all users</Link>),
           icon: (
             <FaUserAlt
               className="icon"
@@ -29,8 +61,9 @@ export const Widget = ({ type }) => {
         break;
       case "order":
         data = {
-          title: "ORDERS",
-          link: "View all orders",
+          title: (<span style={{color:'green'}}>New Order</span>),
+          amount:listNewOrder,
+          link: (<Link to='/admin/order'>See all new orders</Link>),
           icon: (
             <BsFillCalendarFill
               className="icon"
@@ -44,8 +77,9 @@ export const Widget = ({ type }) => {
         break;
       case "earnning":
         data = {
-          title: "EARNING",
-          link: "View net earnings",
+          title: (<span style={{color:'red'}}>Earnning</span>),
+          amount:`${result} 000đ`,
+          link: (<Link to='/admin/statistics'>See all earnning</Link>),
           icon: (
             <FaGitter
               className="icon"
@@ -56,8 +90,9 @@ export const Widget = ({ type }) => {
         break;
       case "products":
         data = {
-          title: "PRODUCTS",
-          link: "See all products",
+          title: (<span style={{color:'gold'}}>Products</span>),
+          amount:product,
+          link: (<Link to='/admin/product'>See all products</Link>),
           icon: (
             <FaCoffee
               className="icon"
@@ -78,7 +113,7 @@ export const Widget = ({ type }) => {
       <div className="widget">
         <div className="left">
           <span className="name-title">{data.title}</span>
-          <span className="counter">{amount}</span>
+          <span className="counter">{data.amount}</span>
           <span className="link"><Link to="">{data.link}</Link></span>
         </div>
         <div className="right">
