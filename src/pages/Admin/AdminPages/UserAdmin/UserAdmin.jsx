@@ -109,8 +109,7 @@ function UserAdmin() {
                                 okText="Yes"
                                 cancelText="No"
                             >
-                                <button 
-                                style = {{background:'white', border:'0.5px solid rgb(230, 227, 227)', cursor:'pointer'}}>
+                                <button> 
                                     Delete</button>
                             </Popconfirm>
                         </div>
@@ -133,10 +132,10 @@ function UserAdmin() {
                 <div className="list-user">
                     <div className="user-title">
                         <h2>Manager User</h2>
-                        <div className="icon-user">
-                            <p style={{ color: 'blue' }}><FaUserAlt /></p><span >{data.length}</span>
-                            <p style={{ color: 'green' }}><FaUserCheck /></p><span >{activeUser.length}</span>
-                            <p style={{ color: 'rgb(182, 80, 80)' }}><FaUserTimes /></p><span >{data.length - activeUser.length}</span>
+                        <div className="icon-users">
+                            <p style={{ color: 'blue' }}><FaUserAlt className="icon-user" />{data.length}</p>
+                            <p style={{ color: 'green' }}><FaUserCheck className="icon-user"/>{activeUser.length}</p>
+                            <p style={{ color: 'rgb(182, 80, 80)' }}><FaUserTimes className="icon-user"/>{data.length - activeUser.length}</p>
                         </div>
                     </div>
                     <div className="user-table">

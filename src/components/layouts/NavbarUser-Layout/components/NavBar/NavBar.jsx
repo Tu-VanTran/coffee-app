@@ -68,6 +68,7 @@ const urlDashboard = (
 
 export default function NavBar() {
   const userInfo = useSelector((state) => state.user.userInfoState);
+  console.log("🚀 ~ file: NavBar.jsx ~ line 71 ~ NavBar ~ userInfo", userInfo)
   const productState = useSelector((state) => state.product.productState);
   const cartState = useSelector((state) => state.cart.cartState);
 

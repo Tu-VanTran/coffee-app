@@ -10,7 +10,6 @@ import { v4 } from "uuid";
 import { BsSearch } from "react-icons/bs";
 import { RiArrowDropUpLine } from "react-icons/ri";
 import NavAdmin from "../../../../components/layouts/NabarAdmin-Layout/components/NabarAdmin";
-import useWindowSize from "./useWindownSize";
 
 const tabs = ['all', 'coffee', 'other'];
 function Products() {
@@ -30,6 +29,7 @@ function Products() {
 
     });
     const listProduct = useSelector(state => state.adminProduct.productState)
+    console.log("🚀 ~ file: Products.jsx ~ line 32 ~ Products ~ listProduct", listProduct.data.length)
     const total = listProduct.pagination.total;
     const dispatch = useDispatch();
     const [visible, setVisible] = useState(false);
@@ -121,7 +121,7 @@ function Products() {
     };
     // handle submit the task of adding products
     const addTodoProduct = (container) => {
-        if (container.productName === '' || container.type === '' || container.price === "" || container.description === '') return;
+        if (container.productName === '' || container.type === '' || container.price === "" || container.description === '' || container.image ==='') return;
         const newTodoList =
         {
             id: v4(),
@@ -172,11 +172,11 @@ function Products() {
                 <div className="tille-product">
                     {/* <FontAwesomeIcon icon="fa-brands fa-twitter" /> */}
                     {/* <FontAwesomeIcon icon="fa-solid fa-check-square" /> */}
-                    <h3 onClick={toggle}><span >Add Products</span></h3>
+                    <h3 onClick={toggle} className='name-title'><span >Add Products</span></h3>
                     {tabs.map(item => (
-                        <button className="name-type" key={item} style={type === item ?
-                            { borderBottom: "1px solid rgb(80, 79, 79)", color: 'blue' }
-                            : {}} onClick={() => setType(item)} >{item.charAt(0).toUpperCase() + item.slice(1)}</button>
+                        <button className={`${(type === item) ? 'title-active' : 'name-title'}`} key={item} style={type === item ?
+                            { borderBottom: "1px solid rgb(236, 109, 4)", color: 'rgb(236, 109, 4)',fontWeight:'500' }
+                            : {fontWeight:'500'}} onClick={() => setType(item)} >{item.charAt(0).toUpperCase() + item.slice(1)}</button>
                     ))}
                     <>
                         <Button
@@ -185,11 +185,12 @@ function Products() {
                                 background: "none",
                                 border: "none",
                                 color: "black",
+                                marginTop:'-7px'
                             }}
                             type="primary"
                             onClick={showDrawer}
                         >
-                            <BsSearch />
+                            <BsSearch className="title-search"/>
                         </Button>
                         <Drawer title="Search Products" placement="right" onClose={onClose} visible={visible} >
                             <input
@@ -244,7 +245,7 @@ function Products() {
                                 onChange={handleOnchangeFile} placeholder="" />
                             {selectImg && <img className="image" src={selectImg} />}
                         </p>
-                        <button className="save-add" onClick={hanldeSubmitTodoValue}> ADD</button>
+                        <button className="save-add" disabled={newTodoValue.length < 5} onClick={hanldeSubmitTodoValue}> ADD</button>
                     </div>
                 </div>
                 }
@@ -256,7 +257,7 @@ function Products() {
                             <div className="product-item" key={index} onClick={() => handleDetailItem(item)}>
                                 <img className="pro-img" src={item.image} alt={item.productName} /><br />
                                 <p style={{ marginTop: '20px' }}>{item.productName}</p>
-                                <p>{item.price}000đ</p>
+                                <p className="price-pro">{item.price}000đ</p>
 
                             </div>
 

@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductActionAdmin } from '../../../../../stores/slices/admin.product.slice';
 import { fetchOrderAdminAction } from '../../../../../stores/slices/admin.cart.slice';
 import { fetchUserAction } from '../../../../../stores/slices/user.slice';
-export const Widget = ({ type }) => {
+
+export const Widget = ( type ) => {
   const listOrder = useSelector(state => state.adminCart.cartState);
   const listProduct = useSelector(state => state.adminProduct.productState)
   const listUser = useSelector(state => state.user.userInfoState)
@@ -19,7 +20,6 @@ export const Widget = ({ type }) => {
   const tatolOrder =() => { listOrder.data.filter(item => {
     if(item.status === 'Đã nhận') {
       result += item.totalBill;
-      console.log("🚀 ~ file: Widget.jsx ~ line 18 ~ tatolOrder ~ result", result)
       return result;
     }
   })};
@@ -42,7 +42,7 @@ useEffect(() => {
     const amount = 100;
     const diff = 20;
   
-    switch (type) {
+    switch (type.type) {
       case "user":
         data = {
           title: (<span style={{color:'blue'}}>Users</span>),
@@ -63,7 +63,7 @@ useEffect(() => {
         data = {
           title: (<span style={{color:'green'}}>New Order</span>),
           amount:listNewOrder,
-          link: (<Link to='/admin/order'>See all new orders</Link>),
+          link: (<Link to='/admin/order'>See new orders</Link>),
           icon: (
             <BsFillCalendarFill
               className="icon"
@@ -78,8 +78,8 @@ useEffect(() => {
       case "earnning":
         data = {
           title: (<span style={{color:'red'}}>Earnning</span>),
-          amount:`${result} 000đ`,
-          link: (<Link to='/admin/statistics'>See all earnning</Link>),
+          amount:`${result} 000`,
+          link: (<Link to='/admin/statistics'>See earnning</Link>),
           icon: (
             <FaGitter
               className="icon"
@@ -92,7 +92,7 @@ useEffect(() => {
         data = {
           title: (<span style={{color:'gold'}}>Products</span>),
           amount:product,
-          link: (<Link to='/admin/product'>See all products</Link>),
+          link: (<Link to='/admin/product'>See products</Link>),
           icon: (
             <FaCoffee
               className="icon"
@@ -110,7 +110,7 @@ useEffect(() => {
     }
   
     return (
-      <div className="widget">
+      <div className="widget" style={{border: `0.2px solid ${type.color}`}}>
         <div className="left">
           <span className="name-title">{data.title}</span>
           <span className="counter">{data.amount}</span>

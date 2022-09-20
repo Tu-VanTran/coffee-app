@@ -220,11 +220,13 @@ function Statistics() {
                     </div>
                 </div>
                 <div>
-                    {status === 'Đã nhận' && showRevenue && <div className="revenue">
+                    {status === 'Đã nhận' && showRevenue && <div className="statistic-revenue">
+                    <div className="revenue" onClick={() => setShowRevenue(false)}>
+                        <p className="hide-revenue" >X</p>
                         <h2>{`The Revenue From Day ${start.getDate()}-${start.getMonth() +1}-${start.getFullYear()}
                          To ${end.getDate()}-${end.getMonth() +1}-${end.getFullYear()}`}</h2>
                         <table> 
-                            <tr>
+                            <tr className="revenue-title">
                                 <th>Name Type</th>
                                 <th>Size</th>
                                 <th>Amount</th>
@@ -235,8 +237,8 @@ function Statistics() {
                                 <th rowSpan={3}>Coffee</th>
                                 <th>Small</th>
                                 <th>{cfSmall}</th>
-                                <th rowSpan={3}>{totalCf}.000đ</th>
-                                <th rowSpan={3}>{Math.round(totalCf / (totalCf + totalOt) * 100)}%</th>
+                                <th rowSpan={3}>{totalCf}{`${totalCf ? ' 000đ' : ''}`}</th>
+                                <th rowSpan={3}>{Math.round(totalCf / (totalCf + totalOt) * 100) ?? ''}%</th>
                             </tr>
                             <tr>
                                 <th>Medium</th>
@@ -250,8 +252,8 @@ function Statistics() {
                                 <th rowSpan={3}>Other</th>
                                 <th>Small</th>
                                 <th>{otSmall}</th>
-                                <th rowSpan={3}>{totalOt}.000đ</th>
-                                <th rowSpan={3}>{Math.floor(totalOt / (totalCf + totalOt) * 100)}%</th>
+                                <th rowSpan={3}>{totalOt}{`${totalOt ? ' 000đ' : ''}`}</th>
+                                <th rowSpan={3}>{Math.round(totalOt / (totalCf + totalOt) * 100) ?? ''}%</th>
                             </tr>
                             <tr>
                                 <th>Medium</th>
@@ -265,11 +267,13 @@ function Statistics() {
                                 <th>Totaly</th>
                                 <th></th>
                                 <th></th>
-                                <th>{totalCf + totalOt}.000đ</th>
+                                <th>{totalCf + totalOt}{(totalCf + totalOt) > 0?  ' 000đ' : ''}</th>
                                 <th></th>
                             </tr>
                         </table>
-                    </div>}
+                    </div>
+                    </div>
+                    }
                 </div>
             </div>
         </div>

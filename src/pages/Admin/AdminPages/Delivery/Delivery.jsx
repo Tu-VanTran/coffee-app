@@ -138,9 +138,9 @@ export const Delivery = () => {
             render: (id) => {
                 return (
                     <div className="handle-button">
-                        <button className="handle-button1" onClick={() => handleDeliveredOrder(id)}
+                        <button className="handle-button1" disabled={selectedRowKeys.length !== 1} onClick={() => handleDeliveredOrder(id)}
                             >Delivered</button>
-                        <button className="handle-button2" onClick={() => { handleCancelOrder(id) }}
+                        <button className="handle-button2" disabled={selectedRowKeys.length !== 1} onClick={() => { handleCancelOrder(id) }}
                            >Cancel</button>
                     </div>
                 )

@@ -5,6 +5,8 @@
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
     padding: 10px;
     background-color: white;
+    border: 0.5px solid rgb(158, 204, 247);
+    border-radius: 10px;
 }
 
 .title-name {
@@ -17,7 +19,15 @@
 }
 
 .featuredChart {
-    width: 100px;
-    height: 100px;
-    transform: translateX(100%);
+    width: 100%;
+    text-align: center;
+}
+.CircularProgressbar{
+    width: 30%;
+}
+@media screen and (max-width:480px) {
+    .featured{
+        width: 100%;
+        border-radius: 10px;
+    }
 }

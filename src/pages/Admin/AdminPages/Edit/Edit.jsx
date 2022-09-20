@@ -75,7 +75,7 @@ function Edit() {
         <div className="admin-edit">
             <NavBarAdmin />
             <div className="edit">
-                <div className="edit-possition">
+                <div className="edit-position">
                     <div className="edit-product">
                         <p className="label-input1">
                             <label>Title:</label>
@@ -96,14 +96,14 @@ function Edit() {
                         <p className="label-input1">
                             <label>Description:</label>
                             <textarea type="text" name="description" value={newValueEdit.description}
-                                onChange={handleOnchangeEdit} placeholder="Description" cols={70} rows={5} />
+                                onChange={handleOnchangeEdit} placeholder="Description" cols={70} rows={4} />
                         </p>
                         <p className="label-input1">
                             <label className="select-img" for="input-img" onClick={toggleImg}>Select File:</label>
-                            {showImg ?? <span><img width={'200px'} style={{ float: 'right' }} src={location.state.image} /></span>}
+                            {showImg ?? <span><img width={'56%'} style={{ border:'1px solid wheat', float:'right', margin:'0 10%' }} src={location.state.image} /></span>}
                             <input id="input-img" hidden type="file" name="myImage"
                                 onChange={handleOnchangeEditFile} placeholder="" />
-                            {urlImage && <img width={'200px'} style={{ float: 'right' }} className="image" src={urlImage} />}
+                            {urlImage && <img width={'56%'} style={{ border:'1px solid wheat', float:'right',margin:'0 10%' }} className="image" src={urlImage} />}
                         </p>
                         <div className="on-button">
                             <button className="reset" onClick={hanldeReset}>Reset</button>

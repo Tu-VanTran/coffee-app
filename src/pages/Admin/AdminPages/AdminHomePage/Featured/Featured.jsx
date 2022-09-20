@@ -46,7 +46,7 @@ export const Featured = () => {
         </div>
         <div className="bottom">
           <div className="featuredChart">
-            <CircularProgressbar value={(totalCurentMonth/target)} maxValue={1} text={`${Math.round((totalCurentMonth/target) * 100)}%`} />;
+            <CircularProgressbar value={(totalCurentMonth/target)} maxValue={1} text={`${Math.round((totalCurentMonth/target) * 100)}%`} />
           </div>
           <p className="title-name">Total sales made today</p>
           <p className="amount" style={totalCurentMonth>=1000? {color:'green'}:{color:'red'}}>{totalCurentMonth} 000</p>

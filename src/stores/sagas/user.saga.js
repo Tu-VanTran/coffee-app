@@ -61,9 +61,7 @@ function* updateUser(action) {
     try {
         yield delay(500)
         const updateUserInfo = action.payload;
-        console.log("🚀 ~ file: user.saga.js ~ line 65 ~ function*updateUser ~ updateUserInfo", updateUserInfo)
         const response = yield UserAPI.updateUser(updateUserInfo.id,updateUserInfo.data)
-        console.log("🚀 ~ file: user.saga.js ~ line 67 ~ function*updateUser ~ response", response)
         yield put(updateUserInfoActionSuccess(response.data))
     } catch (error) {
         yield put(updateUserInfoActionFailed(error.response.data))

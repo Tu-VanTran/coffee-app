@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const URL_API = "http://localhost:3333/api";
+export const URL_API = "https://app-api-json-server.herokuapp.com/api";
+// export const URL_API = "http://localhost:3333/api";
 
 export const API = {
 	get: (url) => axios.get(url),

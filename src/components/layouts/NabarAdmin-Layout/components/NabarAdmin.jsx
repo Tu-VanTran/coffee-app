@@ -3,22 +3,34 @@ import { MdDashboard, } from "react-icons/md";
 import { BsFillCalendarFill } from "react-icons/bs";
 import { FiLogOut } from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import { USER_ID } from '../../../../stores/slices/user.slice';
+import  LogoTag from "../../../../assets/logo-tag.png"
 import './style.css';
 
 const NavAdmin = () => {
-  const image = USER_ID.image
+  const [showMenu, setShowMenu] = useState(false);
+  const decentralization = USER_ID.decentralization
   const name = USER_ID.name
+  const toggle = () => {
+    setShowMenu(!showMenu)
+  }
   return (
     <div className="sidebar">
       <div className="top">
         <NavLink className='avatar' to="/dashboard" style={{ textDecoration: "none" }}>
-          <img src={image}></img><span className="logo">{name}</span>
+          <p className="logo">{name}</p>
+          <p className="">{decentralization}</p>
         </NavLink>
+        <p className='top-logo'><img src={LogoTag}/><span>The Coffee House</span></p>
+        <div className='menu' onClick={toggle}>
+          <p className='menu-icon'></p>
+          <p className='menu-icon'></p>
+          <p className='menu-icon'></p>
+          
+        </div>
       </div>
-      <hr />
-      <nav className="center">
+      <nav className={`center ${showMenu? 'show': ''}`}>
         <ul>
           <span className='title-name'>Main</span>
           <NavLink to="/dashboard" style={{ textDecoration: "none" }}>

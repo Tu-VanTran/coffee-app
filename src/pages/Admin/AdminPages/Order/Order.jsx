@@ -16,7 +16,6 @@ export const Order = () => {
     const orderState = useSelector((state) => state.adminCart.cartState);
     const lengthStatus = orderState.lengthStatus;
     const loading2 = orderState.loading;
-    console.log("🚀 ~ file: Order.jsx ~ line 19 ~ Order ~ loading2", loading2)
     const data1 = orderState.data.filter(item => item.status === 'Chờ xác nhận')
     const dataSource = [];
     const data_ = () => {
@@ -178,9 +177,9 @@ export const Order = () => {
             render: (id) => {
                 return (
                     <div className="handle-button">
-                        <button className="handle-button1" onClick={() => handleConfirmOrder(id)}
+                        <button className="handle-button1" disabled={selectedRowKeys.length !== 1} onClick={() => handleConfirmOrder(id)}
                             >Delivered</button>
-                        <button className="handle-button2" onClick={() => { handleCancelOrder(id) }}
+                        <button className="handle-button2" disabled={selectedRowKeys.length !== 1} onClick={() => { handleCancelOrder(id) }}
                            >Cancel</button>
                     </div>
                 )
@@ -202,7 +201,7 @@ export const Order = () => {
                             marginBottom: '16px',
                         }}
                     >
-                        <Button type="primary" onClick={handleMultipleConfirm} disabled={!hasSelected} loading={loading} style={{ marginRight: '10px' }}>
+                        <Button type="primary" onClick={handleMultipleConfirm} disabled={!hasSelected} loading={loading} style={{ marginRight: '10px', background:'white' }}>
                             Confirm
                         </Button>
                         <Button type="primary" onClick={handleMultipleCancel} disabled={!hasSelected} loading={loading1}>
@@ -217,7 +216,9 @@ export const Order = () => {
                         </span>
                     </div>
                     {loading2 && <div style={{ textAlign: 'center' }}><LoadingOutlined /></div>}
+                    <div className="table-list">
                     <Table bordered rowSelection={rowSelection} columns={columns} dataSource={dataSource} />
+                    </div>
                 </div>
             </div>
         </div>
