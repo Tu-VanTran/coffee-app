@@ -264,15 +264,15 @@ function Profile() {
                                 ></input>
                             </Modal>
                             <Modal title="Edit Information" visible={isModalVisible2} onOk={handleOk} onCancel={handleCancel}>
-                                <>
+                                <div>
                                     <label style={{ marginRight: '10px' }}>Avatar:  </label>
                                     <img src={profileUser.image} width={'100px'}></img>
-                                </>
-                                <>
+                                </div>
+                                <div>
                                     <label for="new-avatar" style={{ margin: '0 10px' }}>Chose new Avatar:  </label>
                                     <input id="new-avatar" type='file' hidden onChange={handleOnchangeFile}></input>
                                     {newValue && <img width={'100px'} className="image-profile" src={newValue} />}
-                                </>
+                                </div>
                             </Modal>
                         </div>
                     </div>
