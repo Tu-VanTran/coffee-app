@@ -304,6 +304,13 @@
     
 }
 
+.ant-modal-body{
+    display: flex;
+    justify-content: space-evenly;
+}
+.edit-avatar-user img{
+    margin-top: 10px;
+}
 
 .on-button{
     width: 100%;

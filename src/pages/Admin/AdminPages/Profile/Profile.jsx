@@ -103,7 +103,6 @@ function Profile() {
 
         var promise = getBase64(file);
         promise.then(function (result) {
-            console.log("🚀 ~ file: Profile.jsx ~ line 99 ~ result", result)
             if (result !== '') {
                 setNewValue(result)
             }
@@ -264,12 +263,12 @@ function Profile() {
                                 ></input>
                             </Modal>
                             <Modal title="Edit Information" visible={isModalVisible2} onOk={handleOk} onCancel={handleCancel}>
-                                <div>
-                                    <label style={{ marginRight: '10px' }}>Avatar:  </label>
+                                <div className="edit-avatar-user"> 
+                                    <label>Avatar:  </label><br/>
                                     <img src={profileUser.image} width={'100px'}></img>
                                 </div>
-                                <div>
-                                    <label for="new-avatar" style={{ margin: '0 10px' }}>Chose new Avatar:  </label>
+                                <div className="edit-avatar-user">
+                                    <label for="new-avatar" >Chose new Avatar:  </label><br/>
                                     <input id="new-avatar" type='file' hidden onChange={handleOnchangeFile}></input>
                                     {newValue && <img width={'100px'} className="image-profile" src={newValue} />}
                                 </div>
