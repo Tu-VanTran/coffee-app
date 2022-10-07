@@ -22,7 +22,6 @@ export default function Profile() {
    const email = userInfo?.data.email
    const phone = userInfo?.data.phone
    const address = userInfo?.data.address
-   console.log("🚀 ~ file: Profile.jsx ~ line 25 ~ Profile ~ address", address)
    const [newTodoValue, setNewTodoValue] = useState({
       name: userName,
       phone: phone,
@@ -41,7 +40,6 @@ export default function Profile() {
    }
 
    const onFinish = (values) => {
-      console.log("🚀 ~ file: Profile.jsx ~ line 43 ~ onFinish ~ values", values)
       dispatch(updateUserInfoAction1({ id: userInfo?.data.id, data: { ...values, email: email } }))
       setNewTodoValue(
          {
