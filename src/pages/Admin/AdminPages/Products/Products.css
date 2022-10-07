@@ -80,12 +80,14 @@
     position: relative;
     padding-top: 8px;
     width: 14%;
+    height: 40vh;
     display: block;
     text-align: center;
     border-radius: 9px;
     margin: 1.3%; 
     background: white;
     background-size:100% 200%;
+    border: 0.5px solid rgb(235, 234, 234);
     background-image: linear-gradient(  to top, rgba(245, 133, 59, 0.7) 50%, white 50%);
     transition: all 0.3s ease-in-out;
     z-index: 0;
@@ -180,7 +182,7 @@
 }
 .input-product{
     outline: none;
-    border: 1px solid rgb(228, 227, 225);
+    border: 1px solid wheat;
     width: 60%;
     height:30px;
     
@@ -208,7 +210,7 @@
 
 .text-des{
     width: 60%;
-    border: 0.5px solid rgb(197, 197, 197);
+    border: 0.5px solid wheat;
     overflow-y: none;
     outline: none;
     border-collapse: hidden;
@@ -350,9 +352,10 @@
     .tille-product{background: white;}
     .product .product-item{
       width: 42%;
+      height: 30vh;
       box-shadow: 1px 1px 3px 0.01px rgb(199, 196, 196);
       margin: 3.5%;
-      padding: 0;
+      padding: 5px 0;
     }
     .product{
       border: none;

@@ -4,4 +4,4 @@ cd build
 
 cp index.html 200.html
 
-surge . ordercoffee.surge.sh
+surge . the-order-coffee.surge.sh

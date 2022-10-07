@@ -201,7 +201,7 @@ export const Order = () => {
                             marginBottom: '16px',
                         }}
                     >
-                        <Button type="primary" onClick={handleMultipleConfirm} disabled={!hasSelected} loading={loading} style={{ marginRight: '10px', background:'white' }}>
+                        <Button type="primary" onClick={handleMultipleConfirm} disabled={!hasSelected} loading={loading} style={{ marginRight: '10px' }}>
                             Confirm
                         </Button>
                         <Button type="primary" onClick={handleMultipleCancel} disabled={!hasSelected} loading={loading1}>

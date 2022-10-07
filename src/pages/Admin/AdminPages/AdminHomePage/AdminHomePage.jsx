@@ -10,7 +10,7 @@ import { USER_ID } from "../../../../stores/slices/user.slice";
 import logoTag from "../../../../assets/logo-tag.png"
 
 function AdminHomePage() {
-    const image = USER_ID.image
+    const image = USER_ID?.image
     return (
         <div className="home-admin">
             <NavBarAdmin />

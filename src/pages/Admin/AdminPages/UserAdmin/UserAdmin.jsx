@@ -13,6 +13,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 function UserAdmin() {
     const listUser = useSelector(state => state.user.userInfoState)
     const [searchParam, setSearchParam] = useSearchParams();
+    console.log("🚀 ~ file: UserAdmin.jsx ~ line 16 ~ UserAdmin ~ searchParam", searchParam)
     const [deleteItem, setDeleteItem] = useState(false)
     const a = useLocation()
     const navigate = useNavigate()
@@ -52,7 +53,7 @@ function UserAdmin() {
         },
         {
             title: 'Name',
-            dataIndex: 'name' && 'image',
+            dataIndex: 'name',
             key: 'name',
             render: (_, image) => {
                 return <div style={{ color: "blue" }}><img style={{ width: '40px', height: '40px', borderRadius: '50%' }} src={image.image} /> {image.name}</div>

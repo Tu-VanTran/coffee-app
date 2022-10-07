@@ -25,6 +25,7 @@ function* login(action) {
             email: loginPayload.email,
             password: loginPayload.password,
         });
+        console.log("🚀 ~ file: user.saga.js ~ line 28 ~ function*login ~ response", response)
         yield put(loginActionSuccess(response.data.user));
     } catch (e) {
         yield put(loginActionFailed(e.response.data));
@@ -59,12 +60,11 @@ function* fetchUser(action) {
 
 function* updateUser(action) {
     try {
-        yield delay(500)
         const updateUserInfo = action.payload;
         const response = yield UserAPI.updateUser(updateUserInfo.id,updateUserInfo.data)
         yield put(updateUserInfoActionSuccess(response.data))
-    } catch (error) {
-        yield put(updateUserInfoActionFailed(error.response.data))
+    } catch (e) {
+        yield put(updateUserInfoActionFailed(e.response.data))
     }
 }
 

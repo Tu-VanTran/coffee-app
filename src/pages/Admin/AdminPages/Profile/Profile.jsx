@@ -11,7 +11,6 @@ import { fetchOrderAdminAction } from "../../../../stores/slices/admin.cart.slic
 import { deleteUserAction, fetchUserAction, searchUserAction, updateUserInfoAction } from "../../../../stores/slices/user.slice";
 import { IoPencilOutline } from "react-icons/io5";
 import { BsSearch } from "react-icons/bs";
-import { updateProductAction } from "../../../../stores/slices/admin.product.slice";
 
 function Profile() {
     const list_user = useSelector(state => state.user.userInfoState);
@@ -30,15 +29,16 @@ function Profile() {
     });
     const [profileUser, setProfileUser] = useState(location.state);
     const dispatch = useDispatch();
-    const userUpdate_ = list_user.userUpdate
+    // const userUpdate_ = list_user.userUpdate
     const data = orderState.data.filter(item => {
         return item.userId === profileUser.id
     })
+    console.log("🚀 ~ file: Profile.jsx ~ line 36 ~ data ~ data", data)
 
 
     useEffect(() => {
         dispatch(fetchUserAction({ page: 1, limit: 200 }))
-    }, [dispatch, userUpdate_])
+    }, [dispatch, profileUser])
     useEffect(() => {
         dispatch(fetchOrderAdminAction())
     }, [dispatch]);
@@ -268,7 +268,7 @@ function Profile() {
                                     <img src={profileUser.image} width={'100px'}></img>
                                 </div>
                                 <div className="edit-avatar-user">
-                                    <label for="new-avatar" >Chose new Avatar:  </label><br/>
+                                    <label className="choose-avatar" for="new-avatar" style={{cursor:'pointer'}}>Chose new Avatar:  </label><br/>
                                     <input id="new-avatar" type='file' hidden onChange={handleOnchangeFile}></input>
                                     {newValue && <img width={'100px'} className="image-profile" src={newValue} />}
                                 </div>

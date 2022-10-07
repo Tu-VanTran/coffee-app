@@ -1,5 +1,3 @@
-import api from '@fortawesome/fontawesome';
-import { USER_ID } from '../stores/slices/user.slice'
 import {API, URL_API} from './const.api'
 
 export const UserAPI = {

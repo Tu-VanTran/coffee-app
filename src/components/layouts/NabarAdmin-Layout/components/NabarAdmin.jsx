@@ -3,15 +3,19 @@ import { MdDashboard, } from "react-icons/md";
 import { BsFillCalendarFill } from "react-icons/bs";
 import { FiLogOut } from "react-icons/fi";
 import { NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { USER_ID } from '../../../../stores/slices/user.slice';
 import  LogoTag from "../../../../assets/logo-tag.png"
 import './style.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 const NavAdmin = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const decentralization = USER_ID.decentralization
-  const name = USER_ID.name
+  const dispatch = useDispatch();
+  const users = useSelector(state => state.user.userInfoState)
+  const decentralization = users?.data.decentralization
+  const name = users?.data.name
+ 
   const toggle = () => {
     setShowMenu(!showMenu)
   }

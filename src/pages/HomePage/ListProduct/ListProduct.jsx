@@ -7,7 +7,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 export default function ListProduct() {
 	const productState = useSelector(state => state.product.productState)
-    console.log("🚀 ~ file: ListProduct.jsx ~ line 10 ~ ListProduct ~ productState", productState)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	let [searchParams, setSearchParams] = useSearchParams();
