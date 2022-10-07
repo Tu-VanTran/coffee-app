@@ -6,11 +6,12 @@ import './style.css'
 import { Widget } from "./Widget/Widget";
 import { IoNotifications } from "react-icons/io5";
 import { BsMessenger } from "react-icons/bs";
-import { USER_ID } from "../../../../stores/slices/user.slice";
 import logoTag from "../../../../assets/logo-tag.png"
+import { useSelector } from "react-redux";
 
 function AdminHomePage() {
-    const image = USER_ID?.image
+    const users = useSelector(state => state.user.userInfoState)
+    const avatar = users?.data.image
     return (
         <div className="home-admin">
             <NavBarAdmin />
@@ -20,7 +21,7 @@ function AdminHomePage() {
                     <p>
                         <span><BsMessenger style={{transform: 'translate(50%, 35%)'}}/></span>
                         <span><IoNotifications style={{transform: 'translate(50%, 35%)'}}/></span>
-                        <img style={{ width: '40px', borderRadius: '50%' }} src={image} />
+                        <img style={{ width: '40px', borderRadius: '50%' }} src={avatar} />
                     </p>
                 </div>
                 <div className="widgets" >

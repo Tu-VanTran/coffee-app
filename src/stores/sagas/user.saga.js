@@ -26,7 +26,6 @@ function* login(action) {
             email: loginPayload.email,
             password: loginPayload.password,
         });
-        console.log("🚀 ~ file: user.saga.js ~ line 28 ~ function*login ~ response", response)
         yield put(loginActionSuccess(response.data.user));
     } catch (e) {
         yield put(loginActionFailed(e.response.data));
@@ -62,7 +61,6 @@ function* fetchUser(action) {
 function* updateUser(action) {
     try {
         const updateUserInfo = action.payload;
-        console.log("🚀 ~ file: user.saga.js ~ line 64 ~ function*updateUser ~ updateUserInfo", updateUserInfo)
         const response = yield UserAPI.updateUser(updateUserInfo.id,updateUserInfo.data)
         yield put(updateUserInfoActionSuccess(response.data))
     } catch (e) {
@@ -72,7 +70,6 @@ function* updateUser(action) {
 function* updateUser1(action) {
     try {
         const updateUserInfo = action.payload;
-        console.log("🚀 ~ file: user.saga.js ~ line 64 ~ function*updateUser ~ updateUserInfo", updateUserInfo)
         const response = yield UserAPI.updateUser(updateUserInfo.id,updateUserInfo.data)
         yield put(updateUserInfoActionSuccess1(response.data))
     } catch (e) {
