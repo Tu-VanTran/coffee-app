@@ -162,6 +162,38 @@ const userSlice = createSlice({
                 error: action.payload.error
             }
         },
+        
+        updateUserInfoAction1(state, action) {
+            state.userInfoState = {
+                ...state.userInfoState,
+                loading: true
+            }
+        },
+        updateUserInfoActionSuccess1(state, action) {
+            notification.success({
+                message: `Cập nhật thành công!`,
+            });
+            const userInfoUpdate1 = action.payload
+            if(userInfoUpdate1.id === userInfoFromStorage.id){
+            localStorage.setItem(USER_INFO_KEY, JSON.stringify(userInfoUpdate1))
+            }
+            // const newData = state.userInfoState.dataUser.filter(item => item.id !== userInfoUpdate.id)
+            state.userInfoState = {
+                ...state.userInfoState,
+                data:userInfoUpdate1,
+                loading: false
+            }
+        },
+        updateUserInfoActionFailed1(state, action) {
+            notification.error({
+                message: `Cập nhật thất bại!`,
+            });
+            state.userInfoState = {
+                ...state.userInfoState,
+                loading: false,
+                error: action.payload.error
+            }
+        },
         searchUserAction(state, action) {
             state.userInfoState={
                 ...state.userInfoState,
@@ -205,8 +237,9 @@ const userSlice = createSlice({
 
 export const { 
     loginAction, loginActionSuccess, loginActionFailed, 
-    registerAction, registerActionSuccess, registerActionFailed,
-    logoutAction, updateUserInfoAction, updateUserInfoActionSuccess, updateUserInfoActionFailed,
+    registerAction, registerActionSuccess, registerActionFailed,logoutAction,
+    updateUserInfoAction, updateUserInfoActionSuccess, updateUserInfoActionFailed,
+    updateUserInfoAction1, updateUserInfoActionSuccess1, updateUserInfoActionFailed1,
     fetchUserAction, fetchUserActionSuccess, fetchUserActionFailed,
     searchUserAction, searchUserActionSuccess, searchUserActionFailed,
     deleteUserAction, deleteUserActionSuccess,deleteUserActionFailed

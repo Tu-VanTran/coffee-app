@@ -14,7 +14,7 @@ function* fetchProduct(action) {
 	try {
 		yield delay(500)
 		const { page, limit } = action.payload;
-		const response = yield ProductAPI.fetchProduct(page, limit)
+		const response = yield ProductAPI.fetchProduct1(page, limit)
 		const productData = response.data
 		const totalProduct = response.headers['x-total-count']
 

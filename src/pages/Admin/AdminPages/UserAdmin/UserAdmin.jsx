@@ -13,7 +13,6 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 function UserAdmin() {
     const listUser = useSelector(state => state.user.userInfoState)
     const [searchParam, setSearchParam] = useSearchParams();
-    console.log("🚀 ~ file: UserAdmin.jsx ~ line 16 ~ UserAdmin ~ searchParam", searchParam)
     const [deleteItem, setDeleteItem] = useState(false)
     const a = useLocation()
     const navigate = useNavigate()

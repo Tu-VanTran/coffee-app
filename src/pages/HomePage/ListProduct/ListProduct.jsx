@@ -24,7 +24,7 @@ export default function ListProduct() {
 	}, [dispatch, _page, _limit]);
 
 	const onPaginationChange = (page, limit) => {
-		dispatch(fetchProductAction(page))
+		// dispatch(fetchProductAction(page))
 		setSearchParams({ page, limit });
 	}
 

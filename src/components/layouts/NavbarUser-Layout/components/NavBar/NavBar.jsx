@@ -152,7 +152,8 @@ export default function NavBar() {
             type="primary"
             onClick={showDrawer}
           >
-            <BsSearch />
+            <BsSearch 
+            />
           </Button>
           <Drawer
             title="Search"

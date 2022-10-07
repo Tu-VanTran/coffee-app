@@ -12,6 +12,7 @@ import { loginAction,
     updateUserInfoAction,
     updateUserInfoActionFailed,
     updateUserInfoActionSuccess,
+    updateUserInfoAction1, updateUserInfoActionSuccess1, updateUserInfoActionFailed1,
     fetchUserAction, fetchUserActionSuccess, fetchUserActionFailed,
     searchUserAction, searchUserActionSuccess, searchUserActionFailed,
      deleteUserActionSuccess, deleteUserActionFailed, deleteUserAction
@@ -61,13 +62,38 @@ function* fetchUser(action) {
 function* updateUser(action) {
     try {
         const updateUserInfo = action.payload;
+        console.log("🚀 ~ file: user.saga.js ~ line 64 ~ function*updateUser ~ updateUserInfo", updateUserInfo)
         const response = yield UserAPI.updateUser(updateUserInfo.id,updateUserInfo.data)
         yield put(updateUserInfoActionSuccess(response.data))
     } catch (e) {
         yield put(updateUserInfoActionFailed(e.response.data))
     }
 }
-
+function* updateUser1(action) {
+    try {
+        const updateUserInfo = action.payload;
+        console.log("🚀 ~ file: user.saga.js ~ line 64 ~ function*updateUser ~ updateUserInfo", updateUserInfo)
+        const response = yield UserAPI.updateUser(updateUserInfo.id,updateUserInfo.data)
+        yield put(updateUserInfoActionSuccess1(response.data))
+    } catch (e) {
+        yield put(updateUserInfoActionFailed1(e.response.data))
+    }
+}
+// function* updateUser1(action) {
+//     try {
+//         const updateUserInfo = action.payload
+//         const response = yield UserAPI.updateUser({
+//             name: updateUserInfo.values.name,
+//             email: updateUserInfo.values.email,
+//             phone: updateUserInfo.values.phone,
+//             address: updateUserInfo.values.address,
+//             decentralization: updateUserInfo.decentralization
+//         }, updateUserInfo.userID)
+//         yield put(updateUserInfoActionSuccess(response.data))
+//     } catch (error) {
+//         yield put(updateUserInfoActionFailed(error.response))
+//     }
+// }
 function* searchUser(action) {
     try {
         const value = action.payload;
@@ -91,6 +117,7 @@ function* deleteUser(action){
 export function* userSaga() {
     yield takeEvery(registerAction, register);
     yield takeEvery(loginAction, login);
+    yield takeEvery(updateUserInfoAction1, updateUser1)
     yield takeEvery(updateUserInfoAction, updateUser);
     yield takeEvery(fetchUserAction, fetchUser);
     yield takeEvery(searchUserAction, searchUser);
